@@ -26,4 +26,3 @@ Create a new Rails project using: rails new ApplicationName
 2.Start the Rails server: rails s
 3.Open a browser and visit: http://localhost:3000
 
-
