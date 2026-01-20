@@ -73,7 +73,7 @@ Press Ctrl + C
 </body>
 </html>
 
-
+<hr>
 
 <!DOCTYPE html>
 <html>
@@ -159,6 +159,7 @@ rails c
 </body>
 </html>
 
+<hr>
 
 <h1>Day3</h1>
 <!DOCTYPE html>
@@ -211,6 +212,8 @@ rails c
 <body>
 </body>
 </html>
+
+<hr>
 
 <!DOCTYPE html>
 <html>
@@ -269,6 +272,298 @@ rails c
 <body>
 </body>
 </html>
+
+<hr>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <h1>Day 5 – Methods, Type Casting & Product Scaffold</h1>
+  <h2>1. Methods & Comments</h2>
+
+  <h3>Ruby Methods</h3>
+  <ul>
+    <li>Ruby methods return the last evaluated expression automatically.</li>
+    <li><b>return</b> keyword is optional.</li>
+  </ul>
+
+  <h3>Comments</h3>
+  <ul>
+    <li>Single-line comment: <b>#</b></li>
+    <li>Multi-line comment: <b>=begin / =end</b></li>
+  </ul>
+  
+  <h2>2. Type Casting</h2>
+  <ul>
+    <li>User input is always a <b>String</b>.</li>
+    <li>Ruby does not support implicit type casting.</li>
+  </ul>
+
+  <h3>Examples</h3>
+  <ul>
+    <li>"10".to_i → String to Integer</li>
+    <li>10.to_s → Integer to String</li>
+    <li>"10.5".to_f → String to Float</li>
+  </ul>
+  
+  <h2>3. Product Scaffold</h2>
+
+  <p><b>Command:</b></p>
+  <p>
+    rails generate scaffold Product name:string description:text price:decimal
+    stock:integer is_active:boolean
+  </p>
+
+  <p><b>After any database-related change:</b></p>
+  <p>rails db:migrate</p>
+  
+  <h2>4. Ways to Insert Data</h2>
+  <ul>
+    <li>UI (Rails-generated forms)</li>
+    <li>Manual SQL (DBeaver)</li>
+    <li>Seeds file (db/seeds.rb)</li>
+    <li>Rails Console</li>
+  </ul>
+  
+  <h2>5. Example SQL Insert</h2>
+  <p>
+    INSERT INTO products (name, description, price, stock, is_active, created_at, updated_at)
+ </p>
+  <p>
+   VALUES ('Smart Watch', 'Advanced smart watch with fitness tracking', 150, 10, TRUE, '2026-01-20', '2026-01-20');
+  </p>
+  
+  <h2>6. Example Seed Data</h2>
+  <p>
+   Product.create(name: "Tesla 1", description: "The tesla 1 product", price: 900, stock: 30, is_active: true)
+  </p>
+  
+  <h2>7. Mistakes Made (Day 5)</h2>
+  <ul>
+    <li>Used spaces in column names.</li>
+    <li>Used wrong case in model name (must start with capital letter).</li>
+    <li>Forgot created_at and updated_at in SQL.</li>
+    <li>Misspelled column name (stack instead of stock).</li>
+    <li>Forgot to run rails db:migrate.</li>
+  </ul>
+  
+  <h2>8. Key Learnings</h2>
+  <ul>
+    <li>Rails is convention-driven.</li>
+    <li>YAML files are very strict.</li>
+    <li>Database changes require migrations.</li>
+    <li>Warnings are different from errors.</li>
+  </ul>
+</head>
+<body>
+</body>
+</html>
+
+<hr>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <h1>Day 6 – Ruby Loops & Enumerable Methods</h1>
+  <h2>Ruby Loops</h2>
+
+  <h3>for Loop</h3>
+  <p>
+    The <b>for loop</b> is used when the range or number of iterations is already known.
+    It automatically increments the value and does not require manual increment.
+  </p>
+
+  <p><b>Example:</b></p>
+  <p>
+    <pre>
+    arr = [2, 4, 6, 8, 10, 12]<br><br>
+    for i in 10..15<br>
+    &nbsp;&nbsp;print i<br>
+    end
+    </pre>
+  </p>
+
+  <p><b>Key Points:</b></p>
+  <ul>
+    <li>Automatically increments</li>
+    <li>Manual increment does not work</li>
+    <li><b>..</b> includes both start and end values</li>
+  </ul>
+  
+  <h3>while Loop</h3>
+  <p>
+    The <b>while loop</b> executes code as long as the given condition is true.
+    The condition is checked before each iteration.
+  </p>
+
+  <p><b>Example:</b></p>
+  <p>
+    <pre>
+    i = 0<br>
+    while i &lt;= 10<br>
+    &nbsp;&nbsp;puts i<br>
+    &nbsp;&nbsp;i += 1<br>
+    end
+    </pre>
+  </p>
+
+  <p><b>Key Points:</b></p>
+  <ul>
+    <li>Condition is checked before execution</li>
+    <li>Manual initialization is required</li>
+    <li>Manual increment is required</li>
+  </ul>
+  
+  <h3>loop do</h3>
+  <p>
+    The <b>loop do</b> construct creates an infinite loop.
+    It must contain a <b>break</b> statement to stop execution.
+  </p>
+
+  <p><b>Example:</b></p>
+  <p>
+    <pre>
+    k = 0<br>
+    loop do<br>
+    &nbsp;&nbsp;puts "student : #{k}"<br>
+    &nbsp;&nbsp;k += 1<br>
+    &nbsp;&nbsp;break if k &gt; 30<br>
+    end
+    </pre>
+  </p>
+
+  <p><b>Key Points:</b></p>
+  <ul>
+    <li>Runs continuously</li>
+    <li><b>break</b> is mandatory to stop the loop</li>
+  </ul>
+  
+  <h3>until Loop</h3>
+  <p>
+    The <b>until loop</b> works opposite to the while loop.
+    It runs while the condition is false.
+  </p>
+
+  <p><b>Example:</b></p>
+  <p>
+    <pre>
+    c = 0<br>
+    until c &gt; 15<br>
+    &nbsp;&nbsp;puts c<br>
+    &nbsp;&nbsp;c += 1<br>
+    end
+    </pre>
+  </p>
+
+  <p><b>Key Points:</b></p>
+  <ul>
+    <li>Runs while condition is false</li>
+  </ul>
+  
+  <h2>Loop Control Keywords</h2>
+  <ul>
+    <li><b>break</b> → exits the loop</li>
+    <li><b>next</b> → skips the current iteration</li>
+    <li><b>redo</b> → repeats the current iteration</li>
+  </ul>
+  
+  <h2>Enumerable Methods</h2>
+
+  <p><b>Array Used:</b></p>
+  <p>
+    <pre>
+      arr = [2, 4, 6, 8, 10, 12]
+    </pre>
+    </p>
+
+  <h3>select and select!</h3>
+  <p>
+    select returns a new array with matching elements,
+    while select! modifies the original array.
+  </p>
+
+  <p>
+    <pre>
+    arr.select { |num| num &gt; 4 }<br>
+    arr.select! { |num| num &gt; 4 }
+    </pre>
+  </p>
+  
+  <h3>reject and reject!</h3>
+  <p>
+    reject removes elements based on condition and returns a new array,
+    while reject! permanently modifies the original array.
+  </p>
+
+  <p>
+    <pre>
+    arr.reject { |num| num &gt; 2 }<br>
+    arr.reject! { |num| num &gt; 2 }
+    </pre>
+  </p>
+  
+  <h3>Destructive vs Non-Destructive Methods</h3>
+  <ul>
+    <li>select → non-destructive</li>
+    <li>select! → destructive</li>
+    <li>reject → non-destructive</li>
+    <li>reject! → destructive</li>
+  </ul>
+  
+  <h3>any? and all?</h3>
+
+  <p> <pre>
+    arr2 = [1, 2, 3, 4, 5]
+    arr2.any? { |num| num &gt; 5 }<br>
+    arr2.all? { |num| num &gt; 0 }
+    </pre>
+  </p>
+
+  <p><b>Meaning:</b></p>
+  <ul>
+    <li><b>any?</b> → at least one condition is true</li>
+    <li><b>all?</b> → all conditions are true</li>
+  </ul>
+  
+  <h3>map, collect, each</h3>
+  <p>
+    map and collect return a new array after transformation,
+    while each returns the original array.
+  </p>
+
+  <p>
+    <pre>
+    arr2.map { |num| num ** 2 }<br>
+    arr2.collect { |num| num ** 2 }<br>
+    arr2.each { |num| num ** 2 }
+    </pre>
+  </p>
+  
+  <h2>Key Learning (Day 6)</h2>
+  <ul>
+    <li>Ruby provides multiple loop types for different scenarios</li>
+    <li>Enumerable methods reduce the need for manual loops</li>
+    <li>Methods with <b>!</b> permanently change data</li>
+    <li>Blocks make Ruby code clean and readable</li>
+  </ul>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
