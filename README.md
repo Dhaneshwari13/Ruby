@@ -377,10 +377,12 @@ rails c
 
   <p><b>Example:</b></p>
   <p>
+    <pre>
     arr = [2, 4, 6, 8, 10, 12]<br><br>
     for i in 10..15<br>
     &nbsp;&nbsp;print i<br>
     end
+    </pre>
   </p>
 
   <p><b>Key Points:</b></p>
@@ -398,11 +400,13 @@ rails c
 
   <p><b>Example:</b></p>
   <p>
+    <pre>
     i = 0<br>
     while i &lt;= 10<br>
     &nbsp;&nbsp;puts i<br>
     &nbsp;&nbsp;i += 1<br>
     end
+    </pre>
   </p>
 
   <p><b>Key Points:</b></p>
@@ -420,12 +424,14 @@ rails c
 
   <p><b>Example:</b></p>
   <p>
+    <pre>
     k = 0<br>
     loop do<br>
     &nbsp;&nbsp;puts "student : #{k}"<br>
     &nbsp;&nbsp;k += 1<br>
     &nbsp;&nbsp;break if k &gt; 30<br>
     end
+    </pre>
   </p>
 
   <p><b>Key Points:</b></p>
@@ -442,11 +448,13 @@ rails c
 
   <p><b>Example:</b></p>
   <p>
+    <pre>
     c = 0<br>
     until c &gt; 15<br>
     &nbsp;&nbsp;puts c<br>
     &nbsp;&nbsp;c += 1<br>
     end
+    </pre>
   </p>
 
   <p><b>Key Points:</b></p>
@@ -464,7 +472,11 @@ rails c
   <h2>Enumerable Methods</h2>
 
   <p><b>Array Used:</b></p>
-  <p>arr = [2, 4, 6, 8, 10, 12]</p>
+  <p>
+    <pre>
+      arr = [2, 4, 6, 8, 10, 12]
+    </pre>
+    </p>
 
   <h3>select and select!</h3>
   <p>
@@ -473,8 +485,10 @@ rails c
   </p>
 
   <p>
+    <pre>
     arr.select { |num| num &gt; 4 }<br>
     arr.select! { |num| num &gt; 4 }
+    </pre>
   </p>
   
   <h3>reject and reject!</h3>
@@ -484,8 +498,10 @@ rails c
   </p>
 
   <p>
+    <pre>
     arr.reject { |num| num &gt; 2 }<br>
     arr.reject! { |num| num &gt; 2 }
+    </pre>
   </p>
   
   <h3>Destructive vs Non-Destructive Methods</h3>
@@ -498,11 +514,11 @@ rails c
   
   <h3>any? and all?</h3>
 
-  <p>arr2 = [1, 2, 3, 4, 5]</p>
-
-  <p>
+  <p> <pre>
+    arr2 = [1, 2, 3, 4, 5]
     arr2.any? { |num| num &gt; 5 }<br>
     arr2.all? { |num| num &gt; 0 }
+    </pre>
   </p>
 
   <p><b>Meaning:</b></p>
@@ -518,9 +534,11 @@ rails c
   </p>
 
   <p>
+    <pre>
     arr2.map { |num| num ** 2 }<br>
     arr2.collect { |num| num ** 2 }<br>
     arr2.each { |num| num ** 2 }
+    </pre>
   </p>
   
   <h2>Key Learning (Day 6)</h2>
@@ -535,6 +553,15 @@ rails c
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 
