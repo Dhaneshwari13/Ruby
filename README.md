@@ -523,19 +523,82 @@ rails c
     arr2.each { |num| num ** 2 }
     </pre>
   </p>
-  
-  <h2>Key Learning (Day 6)</h2>
-  <ul>
-    <li>Ruby provides multiple loop types for different scenarios</li>
-    <li>Enumerable methods reduce the need for manual loops</li>
-    <li>Methods with <b>!</b> permanently change data</li>
-    <li>Blocks make Ruby code clean and readable</li>
-  </ul>
+</head>
+<body>
+</body>
+</html>
+
+<hr>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
 </head>
 <body>
 
+<h1> Day 7 – Ruby OOPS (Inheritance & Method Overriding </h1>
+
+<h2>Class</h2>
+<ul>
+    <li>The class name should be written in <strong>CamelCase</strong></li>
+    <li>Example: <code>CustomController</code></li>
+</ul>
+
+<h2>Methods & Variables</h2>
+<ul>
+    <li>Method or variable names should be written in <strong>snake_case</strong></li>
+    <li>Example: <code>limit_active</code></li>
+</ul>
+
+<h2>Inheritance</h2>
+<ul>
+    <li>Ruby allows only <strong>single-level inheritance</strong></li>
+    <li>The <code>super</code> keyword is used to access parent methods and variables</li>
+    <li><strong>Method Hierarchy Flow:</strong></li>
+    <ul>
+        <li>Child</li>
+        <li>Base</li>
+        <li>Object</li>
+        <li>Kernel</li>
+        <li>BasicObject</li>
+    </ul>
+</ul>
+
+<h2>Ancestors</h2>
+<ul>
+    <li>While fetching a method, Ruby searches from the child class first</li>
+    <li>Then it follows the hierarchy flow mentioned above</li>
+</ul>
+
+<h2>respond_to?</h2>
+<ul>
+    <li>Checks whether a method exists or not</li>
+    <li>Example:</li>
+</ul>
+
+<pre>
+"Sample".respond_to?(:uppercase)
+</pre>
+
+<ul>
+    <li>
+        <code>respond_to?</code> returns <strong>true</strong> for inherited built-in methods
+        if they are not overridden
+    </li>
+    <li>These methods come from Base, Object, Kernel, and BasicObject</li>
+</ul>
+
+<h2>Note</h2>
+<ul>
+    <li>The <code>puts</code> method cannot be accessed without overriding because it is private</li>
+    <li><code>BasicObject</code> can access private variables, which is a Ruby feature</li>
+</ul>
+
 </body>
 </html>
+
 
 
 
