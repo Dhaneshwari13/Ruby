@@ -338,23 +338,6 @@ rails c
   <p>
    Product.create(name: "Tesla 1", description: "The tesla 1 product", price: 900, stock: 30, is_active: true)
   </p>
-  
-  <h2>7. Mistakes Made (Day 5)</h2>
-  <ul>
-    <li>Used spaces in column names.</li>
-    <li>Used wrong case in model name (must start with capital letter).</li>
-    <li>Forgot created_at and updated_at in SQL.</li>
-    <li>Misspelled column name (stack instead of stock).</li>
-    <li>Forgot to run rails db:migrate.</li>
-  </ul>
-  
-  <h2>8. Key Learnings</h2>
-  <ul>
-    <li>Rails is convention-driven.</li>
-    <li>YAML files are very strict.</li>
-    <li>Database changes require migrations.</li>
-    <li>Warnings are different from errors.</li>
-  </ul>
 </head>
 <body>
 </body>
