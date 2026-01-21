@@ -599,6 +599,171 @@ rails c
 </body>
 </html>
 
+<hr>
+
+
+
+<h1>Day8</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<h2>Conditional Statements</h2>
+<ul>
+  <li>There are used to perform the operations based on the conditions .</li>
+  <li>There are mainly 3 types</li>
+</ul>
+
+<h2>If Else:</h2>
+<p>  it check the condtion and enters if condition satisfies .</p>
+ <p><b>Example:</b></p>
+  <p>
+    <pre>
+    stock = -20
+    is_availabe = false
+    if stock > 0
+    is_availabe = true
+    else 
+      puts "Item not availabe ."
+    end
+    </pre>
+  </p>
+
+
+  <h2>Else If:</h2>
+<p>Here two or more conditions can be checked.</p>
+<p><b>Example:</b></p>
+
+<pre>
+ price = 350
+   discount = 0
+     if price > 100
+      discount = 10
+     elsif price > 200
+       discount = 20
+     elsif price > 300
+       discount = 30
+     elsif present > 400
+       discount = 40  
+     else
+       discount = 5
+     end
+      
+    puts discount
+</pre>
+
+<h2>Ternary Operator:</h2>
+<p>It is similar to if–else but written in a single line.</p>
+<p><b>Example:</b></p>
+
+<pre>
+is_active = false
+    puts is_active ? "item present" : "not present"
+</pre>
+
+ <h2>Unless:</h2>
+<p>
+  It is opposite to <b>if</b>.  
+  If the condition is <b>true</b>, it goes to the <b>else</b> part.
+</p>
+
+<p><b>Example:</b></p>
+
+<pre>
+stock = 15
+ unless stock < 0
+   puts "Stock availabe"
+    else
+     puts "Stock "
+</pre>
+
+<h2>Case:</h2>
+<p>
+  It is used to perform a specific operation by switching to the
+  corresponding condition.
+</p>
+
+<p><b>Example:</b></p>
+
+<pre>
+price = 350
+discount = 0
+ case  
+when price >= 100  &&  price < 200
+    discount = 10
+ when  price>= 200 &&  price < 300
+   discount = 20 
+ when price >= 300 &&  price < 400
+   discount = 30
+ when price >= 400 &&  price < 500
+   discount = 40
+  else
+    discount = 5
+ end
+</pre>
+
+<h2>Note:</h2>
+<ul>
+    <li>
+        When logical operators (<, >, &&, ||) are used without any variable
+        reference, <b>switch(true)</b> is used.
+    </li>
+    <li>
+        When ranges or flags are used, JavaScript does not support ranges
+        directly like Ruby, so conditions are written explicitly.
+    </li>
+</ul>
+          
+<p><b>Example:</b></p>
+
+<pre>
+  case  price
+  when 100..200
+    discount = 10
+   when  200..300
+    discount = 20 
+  when 300..400
+    discount = 30
+  when 400..500
+    discount = 40
+  else
+     discount = 5
+  end
+                                            
+  puts discount
+</pre>
+
+<h2>Access Modifier:</h2>
+<p>There are 3 types of access modifiers:</p>
+
+<ul>
+    <li>
+        <b>Public:</b>  
+        These classes or methods can be accessed anywhere.
+    </li>
+    <li>
+        <b>Private:</b>  
+        These methods cannot be accessed outside the class.
+    </li>
+    <li>
+        <b>Protected:</b>  
+        These methods can be accessed inside the class or its subclasses.
+    </li>
+</ul>
+
+<h2>Note:</h2>
+<ul>
+    <li>
+        To access <b>private methods</b>, they must be called inside a
+        public method. Then they can be accessed indirectly.
+    </li>
+    <li>
+        To access <b>protected methods</b>, they can be called inside
+        child (sub) class public methods.
+    </li>
+</ul>
+</body>
+</html>
+
 
 
 
