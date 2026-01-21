@@ -538,7 +538,7 @@ rails c
 </head>
 <body>
 
-<h1> Day 7 – Ruby OOPS (Inheritance & Method Overriding </h1>
+<h1> Day 7 – Ruby OOPS (Inheritance & Method Overriding) </h1>
 
 <h2>Class</h2>
 <ul>
