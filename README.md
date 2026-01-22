@@ -603,7 +603,7 @@ rails c
 
 
 
-<h1>Day8</h1>
+<h1>Day-8</h1>
 <!DOCTYPE html>
 <html>
 <head>
@@ -763,6 +763,83 @@ when price >= 100  &&  price < 200
 </ul>
 </body>
 </html>
+
+<hr>
+
+<h1>Day-9</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<h3>Validations</h3>
+
+<ul>
+  <li>The validations can be done 2 ways:
+    <ul>
+      <li>From the frontend in HTML code</li>
+      <li>From the methods in the class</li>
+    </ul>
+  </li>
+
+  <li>There are mainly 2 types:
+    <ol>
+      <li>Inbuilt validations</li>
+      <li>Custom validations</li>
+    </ol>
+  </li>
+</ul>
+
+
+<h3>Inbuilt Validations :</h3>
+
+<p>
+Rails has inbuilt validation methods which can be accessed directly inside
+the models to insert valid data.
+</p>
+
+Example :
+  <pre>
+validates :email, presence: true
+validates :email, uniqueness: true
+validates :name, format: { with: /\A[a-zA-Z]+\z/,
+          message: "Only letters and numbers are allowed" }
+</pre>
+
+
+<h3>Custom Validations :</h3>
+
+<p>
+We can create methods as per our requirement and call them whenever required.
+</p>
+
+Example :
+<pre>
+def check_price
+  if stock == 0 && price > 0
+    # errors.add(:stock, "Stock is not available.")
+    errors.add "Stock is not available."
+  end
+end
+</pre>
+
+<p> validate:check_price ( To call this method ) </p>
+
+
+<h3>Note :</h3>
+
+<p>
+ During the calling of inbuilt validation methods, we use `validates`.
+</p>
+
+<p>
+ During the calling of custom validation functions, we use `validate`.
+</p>
+
+ 
+</head>
+<body>
+</body>
+</html>
+
 
 
 
