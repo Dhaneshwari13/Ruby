@@ -13,8 +13,8 @@
 
 #ternanry operator
 
-# is_active = false
-# puts is_active ? "item present" : "not present"
+is_active = false
+puts is_active ? "item present" : "not present"
 
 
 #if – elsif – else
@@ -69,12 +69,12 @@
 #      puts "email available"
 # end
 
-email = nil 
-unless email.nil?
-    puts "email unavailable"
-else
-     puts "email available"
-end
+# email = nil 
+# unless email.nil?
+#     puts "email unavailable"
+# else
+#      puts "email available"
+# end
 
 # class Animal
 #     def eat
