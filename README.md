@@ -840,16 +840,91 @@ end
 </body>
 </html>
 
+<hr>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
 
+<h1>Day 10 – Rails Scopes</h1>
 
+<h2>What is a Scope?</h2>
+<ul>
+    <li>A scope is a reusable query defined inside a model</li>
+    <li>It is mainly used to handle repetitive database queries</li>
+    <li>Scopes return records from the database table</li>
+</ul>
 
+<h2>Methods vs Scopes</h2>
+<ul>
+    <li>
+        <strong>Methods</strong>
+        <ul>
+            <li>Used for reusable logic and method chaining</li>
+            <li>Can return any type of value</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Scopes</strong>
+        <ul>
+            <li>Used to perform a single database operation</li>
+            <li>Always return an <code>ActiveRecord::Relation</code></li>
+        </ul>
+    </li>
+</ul>
 
+<h2>Using Scopes with Queries</h2>
+<ul>
+    <li>
+        <strong>Rails Query</strong>
+        <pre>
+scope :out_of_stock, -> { where("stock <= ?", 0) }
+        </pre>
+    </li>
+    <li>
+        <strong>SQL Query</strong>
+        <pre>
+scope :test_scope, -> { query("Write the required query") }
+        </pre>
+    </li>
+</ul>
 
+<h2>Types of Scopes</h2>
+<ul>
+    <li>
+        <strong>Non-Parameterized Scope</strong>
+        <pre>
+scope :out_of_stock, -> { where("stock <= ?", 0) }
+        </pre>
+    </li>
+    <li>
+        <strong>Parameterized Scope</strong>
+        <pre>
+scope :blacklisted_customers, ->(customer_ids) { where(id: customer_ids) }
+        </pre>
+    </li>
+</ul>
 
+<h2>Assignment</h2>
+<ul>
+    <li>The code for this assignment is uploaded in the <strong>Day10</strong> folder</li>
+</ul>
 
+<h2>Important Notes</h2>
+<ul>
+    <li>
+        <code>&lt;% %&gt;</code> is used to embed Ruby code inside HTML
+    </li>
+    <li>
+        <code>&lt;%= %&gt;</code> is used to embed Ruby code inside HTML and display the output on the web page
+    </li>
+</ul>
 
-
+</body>
+</html>
 
 
 
