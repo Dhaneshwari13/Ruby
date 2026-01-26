@@ -1,0 +1,76 @@
+<div class="product-show-card">
+  <h2><%= @product.name %></h2>
+
+  <p><strong>Description:</strong> <%= @product.description %></p>
+  <p><strong>Price:</strong> ₹<%= @product.price %></p>
+  <p><strong>Stock:</strong> <%= @product.stock %></p>
+  <p><strong>Status:</strong> 
+    <span class="<%= @product.is_active ? 'active' : 'inactive' %>">
+      <%= @product.is_active ? 'Active' : 'Inactive' %>
+    </span>
+  </p>
+
+  <div class="buttons">
+    <%= link_to "Edit this product", edit_product_path(@product), class: "btn edit-btn" %>
+    <%= link_to "Back to products", products_path, class: "btn back-btn" %>
+    <%= link_to "Destroy this product", @product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn delete-btn" %>
+  </div>
+</div>
+
+<style>
+  .product-show-card {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    background-color: #fefefe;
+  }
+
+  .product-show-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .product-show-card p {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+
+  .active {
+    color: white;
+    background-color: green;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .inactive {
+    color: white;
+    background-color: red;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+  }
+
+  .btn {
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    width: 32%;
+  }
+
+  .edit-btn { background-color: #f0ad4e; }  /* yellow */
+  .back-btn { background-color: #0275d8; }  /* blue */
+  .delete-btn { background-color: #d9534f; } /* red */
+</style>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Details</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .customer-show-container {
+      width: 400px;
+      margin: 60px auto;
+      padding: 25px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .customer-show-container h2 {
+      text-align: center;
+      color: #0b5ed7;
+      margin-bottom: 20px;
+    }
+
+    .customer-info p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .actions {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+
+    .btn-edit {
+      background-color: #0b5ed7;
+    }
+
+    .btn-back {
+      background-color: #6c757d;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="customer-show-container">
+
+    <h2>Customer Details</h2>
+
+    <div class="customer-info">
+      <p><strong>Name:</strong> <%= @customer.name %></p>
+      <p><strong>Email:</strong> <%= @customer.email %></p>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Edit this customer",
+            edit_customer_path(@customer),
+            class: "btn btn-edit" %>
+
+      <%= link_to "Back to customers",
+            customers_path,
+            class: "btn btn-back" %>
+
+      <%= button_to "Destroy this customer",
+            customer_path(@customer),
+            method: :delete,
+            data: { confirm: "Are you sure?" },
+            class: "btn btn-delete" %>
+    </div>
+
+  </div>
+
+</body>
+</html>
