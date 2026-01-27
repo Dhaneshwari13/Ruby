@@ -20,12 +20,14 @@ class ProductsController < ApplicationController
   end
 
   def out_of_stock
-    @product product.new
+    @product = product.out_of_stock
+  end
+
+  
 
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: "Product was successfully created." }

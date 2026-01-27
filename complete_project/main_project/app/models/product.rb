@@ -28,7 +28,6 @@ validates :description,
           allow_blank: true
 
 
-
 end
 
 
