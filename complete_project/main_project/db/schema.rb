@@ -23,11 +23,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_073339) do
 
   create_table "products", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.text "description"  # don't allow special charecters in description
-    t.boolean "is_active" #use inbuilt validation only if it is checkmuse acceptances method that should be true
-    t.string "name"  #try for alphanumeric value
-    t.decimal "price" #write custome validation only if is_active is true then only we have to add price
-    t.integer "stock" #write custome validation only if is_active is true
+    t.text "description"
+    t.boolean "is_active"
+    t.string "name"
+    t.decimal "price"
+    t.integer "stock"
     t.datetime "updated_at", null: false
   end
 end
