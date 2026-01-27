@@ -926,6 +926,171 @@ scope :blacklisted_customers, ->(customer_ids) { where(id: customer_ids) }
 </body>
 </html>
 
+<hr>
+
+<h1>Day-12</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">  
+</head>
+<body>
+
+<h2>Rails Components</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Active Model</td>
+      <td>Model layer support</td>
+      <td>Provides validations, callbacks, and naming without database connection</td>
+      <td>Rails 3.0</td>
+    </tr>
+    <tr>
+      <td>Active Record</td>
+      <td>Object Relational Mapping</td>
+      <td>Connects models with database tables and handles database operations</td>
+      <td>Rails 1.0</td>
+    </tr>
+    <tr>
+      <td>Action View</td>
+      <td>View rendering</td>
+      <td>Displays HTML pages using templates like ERB</td>
+      <td>Rails 1.0</td>
+    </tr>
+    <tr>
+      <td>Action Controller</td>
+      <td>Request and response control</td>
+      <td>Handles browser requests, responses, and connects models with views</td>
+      <td>Rails 1.0</td>
+    </tr>
+    <tr>
+      <td>Active Job</td>
+      <td>Background jobs</td>
+      <td>Manages background tasks and job queues</td>
+      <td>Rails 4.2</td>
+    </tr>
+    <tr>
+      <td>Active Support</td>
+      <td>Utility helpers</td>
+      <td>Provides Ruby extensions and helper methods</td>
+      <td>Rails 1.0</td>
+    </tr>
+    <tr>
+      <td>Action Mailer</td>
+      <td>Email sending</td>
+      <td>Used to send emails from the application</td>
+      <td>Rails 1.0</td>
+    </tr>
+    <tr>
+      <td>Action Mailbox</td>
+      <td>Incoming email handling</td>
+      <td>Receives and processes incoming emails</td>
+      <td>Rails 6.0</td>
+    </tr>
+    <tr>
+      <td>Action Cable</td>
+      <td>Real-time features</td>
+      <td>Supports WebSocket connections like chat</td>
+      <td>Rails 5.0</td>
+    </tr>
+    <tr>
+      <td>Active Storage</td>
+      <td>File uploads</td>
+      <td>Manages file uploads like images and documents</td>
+      <td>Rails 5.2</td>
+    </tr>
+    <tr>
+      <td>Action Text</td>
+      <td>Rich text content</td>
+      <td>Handles rich text editor and formatted content</td>
+      <td>Rails 6.0</td>
+    </tr>
+    <tr>
+      <td>Action Dispatch</td>
+      <td>Routing and middleware</td>
+      <td>Routes requests and manages middleware</td>
+      <td>Rails 1.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>ActivePack</h2>
+
+<div class="box">
+  <p>
+    This component is used to provide views by generating controllers.
+  </p>
+
+  <strong>Example:</strong>
+  <ul>
+    <li>
+      Command:
+      <code>rails g controller admin</code>
+    </li>
+    <li>
+      This generates the <strong>Admin controller</strong> and also the
+      <strong>Admin views</strong>.
+    </li>
+  </ul>
+</div>
+
+<h2>Add a New Column to Product</h2>
+
+<div class="box">
+  <ul>
+    <li>
+      Generate migration:
+      <code>rails g migration AddMobToProduct mob:bigint</code>
+    </li>
+    <li>
+      Run migration:
+      <code>rails db:migrate</code>
+    </li>
+    <li>
+      This will add a new column to the existing table.
+    </li>
+  </ul>
+
+  <strong>Note:</strong>
+  <ul>
+    <li>
+      To remove a column:
+      <code>rails g migration RemoveMobFromCustomers mob:bigint</code>
+    </li>
+  </ul>
+</div>
+
+<h2>Routes Configuration</h2>
+
+<div class="box">
+  <ol>
+    <li>
+      To skip routes:
+      <br>
+      <code>resources :products, except: [:show]</code>
+    </li>
+    <li>
+      To use only specific routes:
+      <br>
+      <code>resources :products, only: [:edit, :destroy]</code>
+    </li>
+  </ol>
+</div>
+
+
+</body>
+</html>
+
+
 
 
 
