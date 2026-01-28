@@ -12,7 +12,7 @@
     }
 
     .customer-show-container {
-      width: 400px;
+      width: 420px;
       margin: 60px auto;
       padding: 25px;
       background: #ffffff;
@@ -29,6 +29,43 @@
     .customer-info p {
       font-size: 16px;
       margin: 10px 0;
+      color: #333;
+    }
+
+    /* About Me styling */
+    .about-me-box {
+      margin-top: 18px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-left: 5px solid #0b5ed7;
+      border-radius: 6px;
+    }
+
+    .about-me-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0b5ed7;
+      margin-bottom: 8px;
+    }
+
+    .about-me-content {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .about-me-content ul,
+    .about-me-content ol {
+      padding-left: 20px;
+    }
+
+    .about-me-content blockquote {
+      margin: 10px 0;
+      padding-left: 12px;
+      border-left: 4px solid #adb5bd;
+      color: #555;
     }
 
     .actions {
@@ -72,6 +109,13 @@
     <div class="customer-info">
       <p><strong>Name:</strong> <%= @customer.name %></p>
       <p><strong>Email:</strong> <%= @customer.email %></p>
+
+      <div class="about-me-box">
+        <div class="about-me-title">About Me</div>
+        <div class="about-me-content">
+          <%= @customer.about_me.present? ? @customer.about_me : "-" %>
+        </div>
+      </div>
     </div>
 
     <div class="actions">

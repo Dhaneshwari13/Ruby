@@ -1,8 +1,11 @@
 class Customer < ApplicationRecord
-    validates :name, format: { with: /\A[a-zA-Z]+\z/, message: "Only letters are allowed" }
-    validates :email, uniqueness: true
-    validates :email, presence: true
-    validates :email, absence: false
+
+    has_rich_text:about_me
+
+    # validates :name, format: { with: /\A[a-zA-Z]+\z/, message: "Only letters are allowed" }
+    # validates :email, uniqueness: true
+    # validates :email, presence: true
+    # validates :email, absence: false
 
     #scope :unique_email, -> {distinct.where(email: "dhanu@gmail.com").pluck(:email)}
     scope :blacklisted_customers, -> (customer_ids) { where(id: customer_ids)}

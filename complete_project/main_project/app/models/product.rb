@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+has_rich_text :details
+
 # validates :name, format: { with: /\A[a-zA-Z]+\z/, message: "Only letters are allowed" }
 # validates :stock, numericality: true
 # validates :stock, length: { minimum: 10, maximum: 20 }
@@ -22,10 +24,10 @@ end
 
 
 #custamize validation for special character
-validates :description,
-          format: { with: /\A[a-zA-Z0-9\s]*\z/,
-                    message: "should not contain special characters" },
-          allow_blank: true
+# validates :description,
+#           format: { with: /\A[a-zA-Z0-9\s]*\z/,
+#                     message: "should not contain special characters" },
+#           allow_blank: true
 
 
 end

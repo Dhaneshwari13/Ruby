@@ -79,6 +79,10 @@
       <label>Email</label>
       <%= form.email_field :email %>
 
+      <label>AboutMe:</label>
+    <%= form.rich_text_area :about_me %>
+ 
+
       <%= form.submit "Save Customer", class: "btn-save" %>
 
     <% end %>

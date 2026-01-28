@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
+    # raise params.inspect
   end
 
   # GET /products/new
@@ -70,6 +71,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.expect(product: [ :name, :description, :price, :stock, :is_active ])
+      params.expect(product: [ :name, :description, :price, :stock, :is_active,:details ])
     end
 end

@@ -10,6 +10,15 @@
     </span>
   </p>
 
+  <div class="product-details-box">
+  <p><strong>Details:</strong></p>
+  <div class="product-details-content">
+    <%= @product.details.present? ? @product.details : "-" %>
+  </div>
+</div>
+
+
+
   <div class="buttons">
     <%= link_to "Edit this product", edit_product_path(@product), class: "btn edit-btn" %>
     <%= link_to "Back to products", products_path, class: "btn back-btn" %>
@@ -69,6 +78,35 @@
     text-align: center;
     width: 32%;
   }
+
+  .product-details-box {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-left: 5px solid #0275d8;
+  border-radius: 6px;
+}
+
+.product-details-content {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.product-details-content ul,
+.product-details-content ol {
+  padding-left: 20px;
+}
+
+.product-details-content blockquote {
+  margin: 10px 0;
+  padding-left: 12px;
+  border-left: 4px solid #adb5bd;
+  color: #555;
+}
+
 
   .edit-btn { background-color: #f0ad4e; }  /* yellow */
   .back-btn { background-color: #0275d8; }  /* blue */
