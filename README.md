@@ -1090,6 +1090,162 @@ scope :blacklisted_customers, ->(customer_ids) { where(id: customer_ids) }
 </body>
 </html>
 
+<hr>
+
+<h1> Day-13 </h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+ 
+</head>
+<body>
+
+  <h2>Day13 - Adding a Column to a Table in Rails Application</h2>
+
+  <p>To add a new column to an existing table, use the <code>rails generate migration</code> command:</p>
+
+  <pre>
+rails generate migration AddColumnColnameToTablename colname:datatype
+  </pre>
+
+  <p>Example: To add a <strong>phone_number</strong> column to the <strong>customers</strong> table:</p>
+
+  <pre>
+rails generate migration AddColumnPhone_numberToCustomer phone_number:integer
+  </pre>
+
+  <p>After generating the migration, run:</p>
+
+  <pre>
+rails db:migrate
+  </pre>
+
+  <p>This will add a migration file to your <code>db/migrate</code> folder, for example:</p>
+
+  <pre>
+db/migrate/20260128044536_add_column_phone_to_customer.rb
+  </pre>
+
+  <p>After migration, the database table <strong>customers</strong> will have the new column <strong>phone_number</strong>.</p>
+
+
+  <h3>2. Commands to Install Action Text:</h3>
+  <pre>
+rails action_text:install
+rails db:migrate
+  </pre>
+
+  <h3>Tables Added to <code>schema.rb</code>:</h3>
+  <ul>
+    <li>action_text_rich_texts</li>
+    <li>active_storage_attachments</li>
+    <li>active_storage_blobs</li>
+    <li>active_storage_variant_records</li>
+  </ul>
+
+  <h3>Migration Files Created in <code>db/migrate</code>:</h3>
+  <ul>
+    <li>20260128045359_create_active_storage_tables.active_storage.rb</li>
+    <li>20260128045360_create_action_text_tables.action_text.rb</li>
+  </ul>
+
+  <h3>Files/Folders Added:</h3>
+  <ul>
+    <li>app/assets/stylesheets/actiontext.css</li>
+    <li>app/views/active_storage/blobs/_blob.html.erb</li>
+    <li>app/views/layouts/action_text/contents/_content.html.erb</li>
+    <li>test/fixtures/action_text/rich_texts.yml</li>
+  </ul>
+
+  <h3>Git Commands:</h3>
+  <ul>
+    <li>Check modified files: <code>git status</code></li>
+    <li>Check changes in a specific file: <code>git diff &lt;file_path&gt;</code></li>
+  </ul>
+
+  <h3>Connections in Action Text Tables:</h3>
+  <ul>
+    <li><code>active_storage_attachments</code> references <code>active_storage_blobs</code> via <code>blob_id</code></li>
+    <li><code>active_storage_variant_records</code> references <code>active_storage_blobs</code> via <code>blob_id</code></li>
+  </ul>
+
+  
+  <h2>3. Array Operations in Ruby</h2>
+
+  <p>Example:</p>
+
+  <pre>
+a1 = [1, 2, 3, 4, 5, 6]
+a2 = [1, 3, 5]
+
+# Intersection
+a3 = a1 & a2   # => [1, 3, 5]
+
+# Union
+a4 = a1 | a2   # => [1, 2, 3, 4, 5, 6]
+
+# Print results
+print a3
+puts
+print a4
+  </pre>
+
+  <h3>Output:</h3>
+  <pre>
+[1, 3, 5]
+[1, 2, 3, 4, 5, 6]
+  </pre>
+
+  <h3>Explanation:</h3>
+  <ul>
+    <li><code>&</code> operator returns the <strong>intersection</strong> of two arrays (common elements).</li>
+    <li><code>|</code> operator returns the <strong>union</strong> of two arrays (all unique elements combined).</li>
+    <li>Duplicates are removed automatically in both operations.</li>
+  </ul>
+
+   <h2>4. Debugging with <code>params.inspect</code></h2>
+
+  <p><strong>Purpose:</strong></p>
+  <ul>
+    <li>Used to inspect parameters coming from forms or requests.</li>
+    <li>Helps in debugging to see exactly what parameters are being sent.</li>
+    <li>Stops execution and shows all permitted parameters on the error page when using <code>raise</code>.</li>
+  </ul>
+
+<h3>Example in a Controller:</h3>
+
+  <pre>
+def create
+  raise customer_params.inspect
+
+  @customer = Customer.new(customer_params)
+
+  respond_to do |format|
+    if @customer.save
+      format.html { redirect_to @customer, notice: "Customer was successfully created." }
+      format.json { render :show, status: :created, location: @customer }
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @customer.errors, status: :unprocessable_entity }
+    end
+  end
+end
+  </pre>
+
+  <h3>Example Output Error:</h3>
+
+  <pre>
+#&lt;ActionController::Parameters 
+ {"name"=>"jhon", "email"=>"1@gmail.com", "about_me"=>"&lt;div&gt;jhon is a english name&lt;/div&gt;"} permitted: true&gt;
+  </pre>
+
+
+
+</body>
+</html>
+
+
 
 
 
