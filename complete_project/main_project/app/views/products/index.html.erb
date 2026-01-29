@@ -15,8 +15,12 @@
         <th>Description</th>
         <th>Price</th>
         <th>Stock</th>
+        <th>Details</th>
+        <th>Data </th>
         <th>Status</th>
         <th>View Product</th>
+        
+         
       </tr>
     </thead>
 
@@ -28,6 +32,17 @@
           <td><%= product.description %></td>
           <td><%= product.price %></td>
           <td><%= product.stock %></td>
+          <td><%= product.details %></td>
+
+          <td><% if product.product_photo.attached? %> 
+          <% product.product_photo.each do |photo| %>
+            <%= image_tag  url_for(photo),size:"100x100"%>
+            <% end  %>
+  
+        <% else %>
+        <p> No photo </p>
+        <% end %>
+
 
           <!-- Active / Inactive with color -->
           <td>

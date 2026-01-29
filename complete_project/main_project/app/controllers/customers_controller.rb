@@ -3,9 +3,9 @@ class CustomersController < ApplicationController
 
   # GET /customers or /customers.json
   def index
-    @list_of_customers = [1,4,6,3]
-    @customers = Customer.blacklisted_customers(@list_of_customers)
-    #  @customers = Customer.all
+    # @list_of_customers = [1,4,6,3]
+    # @customers = Customer.blacklisted_customers(@list_of_customers)
+     @customers = Customer.all
   end
 
   # GET /customers/1 or /customers/1.json
@@ -69,6 +69,6 @@ class CustomersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.expect(customer: [ :name, :email,:about_me ])
+      params.expect(customer: [ :name, :email,:about_me,:dob,:profile_photo ])
     end
 end

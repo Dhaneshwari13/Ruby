@@ -6,6 +6,9 @@
       <th>Name</th>
       <th>Email</th>
       <th>View</th>
+      <th>About Me </th>
+      <th>Data </th>
+
     </tr>
   </thead>
 
@@ -16,6 +19,18 @@
       <tr>
         <td><%= customer.name %></td>
         <td><%= customer.email %></td>
+        <td><%= customer.about_me %></td>
+        <td><% if customer.profile_photo.attached? %> 
+          <% if customer.profile_photo.image? %>
+          <%= image_tag  url_for(customer.profile_photo) %>
+          <% end %>
+          
+        <% else %>
+        <p> No photo </p>
+        <% end %>
+          
+          </td>
+
         <td>
           <%= link_to "Show this customer", customer, class: "btn" %>
         </td>

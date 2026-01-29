@@ -1,4 +1,9 @@
 class Product < ApplicationRecord
+
+has_many_attached:product_photo
+
+has_one_attached:invoice
+
 has_rich_text :details
 
 # validates :name, format: { with: /\A[a-zA-Z]+\z/, message: "Only letters are allowed" }

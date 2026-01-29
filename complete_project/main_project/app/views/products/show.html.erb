@@ -15,6 +15,29 @@
   <div class="product-details-content">
     <%= @product.details.present? ? @product.details : "-" %>
   </div>
+
+  <div class="product-photo-box">
+        <div class="product-photo">profile photo</div>
+        <div class="product-photo-content">
+
+         <% if @product.product_photo.attached? %>
+         <% @product.product_photo.each do |photo| %>
+          <%= image_tag  photo,alt:"product photo" ,size:"100x100"%>
+
+         <% end %>
+
+         <% if @product.invoice.attached? %>
+          <%= link_to "View PDF", rails_blob_path(@product.invoice, disposition:"inline")%>
+        <% else %>
+            <p>No invoice file</p>
+        <% end %>
+
+      
+  
+<% end %>
+       
+      </div>
+
 </div>
 
 

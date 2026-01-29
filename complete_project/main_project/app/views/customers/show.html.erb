@@ -116,6 +116,21 @@
           <%= @customer.about_me.present? ? @customer.about_me : "-" %>
         </div>
       </div>
+
+      <div>
+        <p> <%= @customer.dob %></p>
+      </div>
+
+
+      <div class="profile-photo-box">
+        <div class="profile-photo">profile photo</div>
+        <div class="profile-photo-content">
+
+         <% if @customer.profile_photo.attached? %>
+  <%= image_tag @customer.profile_photo, alt: "Profile Photo" %>
+<% end %>
+       
+      </div>
     </div>
 
     <div class="actions">
