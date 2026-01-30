@@ -1239,11 +1239,135 @@ end
 #&lt;ActionController::Parameters 
  {"name"=>"jhon", "email"=>"1@gmail.com", "about_me"=>"&lt;div&gt;jhon is a english name&lt;/div&gt;"} permitted: true&gt;
   </pre>
+</body>
+</html>
 
+<hr>
+
+<h1>Day</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+</head>
+<body>
+
+  <h2>Active Storage</h2>
+
+  <p>
+    Active Storage is used to handle file uploads without storing file data
+    directly in the main application tables.
+  </p>
+
+  <p>
+    It creates separate tables
+    (<strong>active_storage_blobs</strong> and
+    <strong>active_storage_attachments</strong>)
+    and connects them using primary and foreign keys.
+  </p>
+
+  <p>
+    It is mainly used to store:
+  </p>
+
+  <ul>
+    <li>Images</li>
+    <li>Files</li>
+    <li>PDFs</li>
+    <li>Videos and other documents</li>
+  </ul>
+
+  <p>
+    To use Active Storage, we need to install and configure it in the Rails application.
+  </p>
+
+  <p>
+    The related code and assignment are updated in the
+    <strong>Day14 README</strong>.
+  </p>
+
+  <h2>Storage</h2>
+
+  <p>Storage can be configured in two ways:</p>
+
+  <ul>
+    <li>Local storage</li>
+    <li>Cloud storage</li>
+  </ul>
+
+  <p>For cloud storage, we need to install the specific gem:</p>
+
+  <ul>
+    <li>AWS S3 → <strong>aws-sdk-s3</strong> gem</li>
+    <li>Google Cloud Storage (GCS) → <strong>google-cloud-storage</strong> gem</li>
+  </ul>
+
+  <p>Steps to configure cloud storage:</p>
+
+  <ol>
+    <li>Install Active Storage</li>
+    <li>Run <code>rails db:migrate</code></li>
+    <li>Configure <code>storage.yml</code> (define which storage service to use)</li>
+  </ol>
+
+  <p>
+    In the environment files
+    (<code>development.rb</code>, <code>production.rb</code>, etc.),
+    we specify which storage from <code>storage.yml</code> should be used.
+  </p>
+
+  <p>
+    Different environments can use different storage services.
+  </p>
+
+<h2>Order to Write Code in Model</h2>
+
+  <p>Recommended order for better readability and maintainability:</p>
+
+  <ol>
+    <li>Action Text related code</li>
+    <li>Active Storage attachments</li>
+    <li>Scopes</li>
+    <li>Validations</li>
+    <li>Associations</li>
+  </ol>
+
+  <p>
+    These steps are not compulsory, but following this order helps maintain
+    a clean structure and makes the project easier to understand and analyze.
+  </p>
+
+<h2>Styling</h2>
+
+<p>We can apply styling in two ways:</p>
+
+<ol>
+  <li>
+    <strong>Using HTML and CSS</strong>
+    <ul>
+      <li>Directly apply styles using HTML tags and CSS classes.</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Using Gems</strong>
+    <p>Gems like:</p>
+    <ul>
+      <li><code>image_processing</code></li>
+      <li><code>carrierwave</code></li>
+    </ul>
+    <p>
+      These gems allow us to apply styles and transformations similar to validations
+      (e.g., resizing images, formatting uploads).
+    </p>
+  </li>
+</ol>
 
 
 </body>
 </html>
+
 
 
 
