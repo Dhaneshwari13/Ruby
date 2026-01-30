@@ -1,0 +1,17 @@
+<h2>Orders List</h2>
+
+<table border="1">
+  <tr>
+    <th>Details</th>
+    <th>Count</th>
+  </tr>
+
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.details %></td>
+      <td><%= order.count %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "New Order", new_order_path %>

@@ -1,102 +1,52 @@
-## Task-1
-
-## Difference between schema.rb file before and after modifications
-
-## Before schema.rb
-
-ActiveRecord::Schema[8.1].define(version: 2026_01_28_044301) do
-  enable_extension "pg_catalog.plpgsql"
-
-  create_table "customers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "email"
-    t.string "name"
-    t.integer "phone_number"
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.text "description"
-    t.boolean "is_active"
-    t.string "name"
-    t.decimal "price"
-    t.integer "stock"
-    t.datetime "updated_at", null: false
-  end
-end
+ Action Text 
+    -> it is the component which provides the better stylings like rich text area .
+  
+    Installation steps of ActionText
+        -> ActionText is built-in starting from Rails 6.0
+        -> Run the command : rails action_text:install
+        -> Run migrations rails db:migration
 
 
-## After scheme.rb
+    Files created in the project after installing ActionText:
+        -> app/assets/stylesheets/actiontext.css (newly created)
+        -> app/javascript/application.js (updated)
+        -> projectDb/app/views/active_storage/blobs/_blob.html.erb (newly created)
+        -> projectDb/app/views/layouts/action_text/contents/_content.html.erb (newly created)
+        -> projectDb/config/importmap.rb (updated)
+        -> projectDb/db/migrate/20260128045538_create_active_storage_tables.active_storage.rb (newly created)
+        -> projectDb/db/migrate/20260128045539_create_action_text_tables.action_text.rb (newly created)
+        -> projectDb/test/fixtures/action_text/rich_texts.yml (newly created)
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_28_045320) do
-  enable_extension "pg_catalog.plpgsql"
+    File changes after migration.
+        schema.rb (updated)
 
-  # NEW TABLE (Action Text)
-  create_table "action_text_rich_texts", force: :cascade do |t|
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.string "name", null: false
-    t.bigint "record_id", null: false
-    t.string "record_type", null: false
-    t.datetime "updated_at", null: false
-    t.index ["record_type", "record_id", "name"],
-            name: "index_action_text_rich_texts_uniqueness", unique: true
-  end
 
-  # NEW TABLE (Active Storage)
-  create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.bigint "byte_size", null: false
-    t.string "checksum"
-    t.datetime "created_at", null: false
-    t.string "service_name", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  # NEW TABLE (Active Storage)
-  create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "record_id", null: false
-    t.string "record_type", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"],
-            name: "index_active_storage_attachments_uniqueness", unique: true
-  end
-
-  # NEW TABLE (Image Variants)
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
-    t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"],
-            name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  # EXISTING TABLES (NO CHANGE)
-  create_table "customers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "email"
-    t.string "name"
-    t.integer "phone_number"
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.text "description"
-    t.boolean "is_active"
-    t.string "name"
-    t.decimal "price"
-    t.integer "stock"
-    t.datetime "updated_at", null: false
-  end
-
-  # NEW FOREIGN KEYS
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-end
+#   Steps to do 
+    * Steps For the existing database table to add new columns with using action text .
+    Step1 :
+        -> Inside the Product module add a method has_rich_text 
+              has_rich_text:description           
+    Step2 :
+        -> In the Controller inside the private method that is params add the parameter :descrption .
+               def product_params
+                    params.expect(product: [ :name, :description, :price, :stock, :is_active, :description ])
+                end
+    Step3 :
+        -> In the form now update the form.text_area to form.rich_text_area .
+                <div>
+                    <%= form.label :description, style: "display: block" %>
+                    <%= form.rich_text_area :description %>
+                </div>
+    Step4 :
+        -> In the index update with the descption .
+                 <p class="card-text text-muted">
+                        <%= if  product.description.nil?
+                                "Default Description ."
+                            else
+                                product.description
+                            end              
+                        %>       
+                    </p>
+    Step5 : In the  edit and new we can get as we are render the form .
+    Step6 : In the show update with descrption 
+                 <%= @product.description  %>
