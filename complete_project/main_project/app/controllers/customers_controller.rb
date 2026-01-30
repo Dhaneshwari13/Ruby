@@ -27,7 +27,8 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     respond_to do |format|
-      if @customer.save
+      if @customer.save # when u trigger a email, it has to be set after saving (.save)
+        CustomerMailer.with(customer:@customer).welcome_email.deliver
         format.html { redirect_to @customer, notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
       else

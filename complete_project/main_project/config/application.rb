@@ -1,6 +1,7 @@
 require_relative "boot"
 
-require "rails/all"
+require "rails/all"  #important line,server wont run wo it
+require "action_mailer/railtie" #means loading Action Mailer ,it loads only.
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
