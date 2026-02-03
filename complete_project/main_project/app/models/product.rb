@@ -12,7 +12,7 @@ has_rich_text :details
 # validates :description, length: { maximum: 500 } 
 validate :check_price
 
-
+ 
 #Scopes
 scope :out_of_stock, -> {where("stock <= ?", 0)}
 
