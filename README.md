@@ -1244,7 +1244,7 @@ end
 
 <hr>
 
-<h1>Day</h1>
+<h1>Day14-Active storage</h1>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1367,6 +1367,519 @@ end
 
 </body>
 </html>
+
+<hr>
+
+# Day 15 – Action Mailer
+
+Action Mailer is used to **send emails** in Rails applications.
+We **do not need to install** Action Mailer separately. It is **included by default** when a Rails application is created.
+
+---
+
+## Step 1: Generate Mailer
+
+```bash
+rails generate mailer CustomerMailer
+```
+
+This command creates the following files:
+
+* `app/mailers/customer_mailer.rb`
+* `app/views/customer_mailer/`
+* `test/mailers/customer_mailer_test.rb`
+* `test/mailers/previews/customer_mailer_preview.rb`
+
+---
+
+## Step 2: application.rb Changes
+
+```ruby
+require "action_mailer/railtie"
+```
+
+This file loads Action Mailer functionality. In most Rails apps, it is already included via `rails/all`.
+
+---
+
+## Step 3: Configure Email Delivery (development.rb)
+
+Edit `config/environments/development.rb`:
+
+```ruby
+config.action_mailer.perform_deliveries = true
+config.action_mailer.delivery_method = :letter_opener
+```
+
+* `letter_opener` is used to **mock email sending** in development
+* Emails will open in browser instead of being sent
+* In production, delivery method is usually **SMTP**
+
+---
+
+## Step 4: Customer Mailer Method
+
+`app/mailers/customer_mailer.rb`
+
+```ruby
+class CustomerMailer < ApplicationMailer
+  def welcome_email
+    @customer = params[:customer]
+    mail(to: @customer.email, subject: "Welcome !!")
+  end
+end
+```
+
+ `params` contains all the data passed while calling the mailer.
+
+---
+
+## Step 5: Mailer View
+
+Create the file:
+
+```
+app/views/customer_mailer/welcome_email.html.erb
+```
+
+Add HTML content for the email.
+---
+
+## Step 6: Trigger Email from Controller
+
+Send mail **after saving data**:
+
+```ruby
+CustomerMailer.with(customer: @customer).welcome_email.deliver
+```
+
+This line triggers the email.
+
+---
+
+## Step 7: Add Gems
+
+In `Gemfile`:
+
+```ruby
+gem "letter_opener", group: :development
+gem "letter_opener_web", group: :development
+```
+
+Run:
+
+```bash
+bundle install
+```
+
+---
+
+## Step 8: Configure Routes
+
+`config/routes.rb`
+
+```ruby
+if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+end
+```
+
+Visit in browser:
+
+```
+http://localhost:3000/letter_opener
+```
+
+---
+
+## Product Mailer Example
+
+Generate mailer:
+
+```bash
+rails generate mailer ProductMailer
+```
+
+Files created:
+
+* `app/mailers/product_mailer.rb`
+* `app/views/product_mailer/`
+* `test/mailers/previews/product_mailer_preview.rb`
+* `test/mailers/product_mailer_test.rb`
+
+### Product Mailer Code
+
+```ruby
+class ProductMailer < ApplicationMailer
+  def welcome_email
+    @product = params[:product]
+    mail(to: @product.email, subject: "Welcome to Rails Mailer Concept")
+  end
+end
+```
+
+---
+
+## Calling Mailer from Controller
+
+```ruby
+def create
+  @product = Product.new(product_params)
+
+  if @product.save
+    ProductMailer.with(product: @product).welcome_email.deliver
+    redirect_to @product, notice: "Product was successfully created."
+  else
+    render :new, status: :unprocessable_entity
+  end
+end
+```
+
+---
+
+## Mailer View for Product
+
+Create:
+
+```
+app/views/product_mailer/welcome_email.html.erb
+```
+
+ Method name and view name must match:
+
+```
+welcome_email → welcome_email.html.erb
+```
+
+---
+
+## Key Points 
+
+* Action Mailer is built into Rails
+* Do not delete `application.rb` or `boot.rb`
+* `letter_opener` is used for development email preview
+* Mailer method name must match view file name
+* Emails should be triggered **after saving data**
+* `params` contains all passed request data
+
+
+
+<hr>
+
+# Day 16 – Action Mailbox 
+---
+
+## 1. Install Action Mailbox
+```bash
+rails action_mailbox:install
+```
+
+**Generated files:**
+
+* `app/mailboxes/application_mailbox.rb`
+* `db/migrate/20260202042002_create_action_mailbox_tables.action_mailbox.rb`
+
+---
+
+## 2. Database Migration
+```bash
+rails db:migrate
+```
+
+**Table created:**
+
+* `action_mailbox_inbound_emails`
+
+Used to store all incoming emails.
+
+---
+## 3. Production Configuration
+
+In `config/environments/production.rb`:
+
+```ruby
+config.action_mailbox.ingress = :any_ingress_server
+```
+
+> Default ingress is `:relay`.
+
+---
+## 4. Application Mailbox
+
+```ruby
+class ApplicationMailbox < ActionMailbox::Base
+  routing all: :support
+end
+```
+
+All incoming emails are routed to `SupportMailbox`.
+
+---
+## 5. Generate Support Mailbox
+
+```bash
+rails generate mailbox support
+```
+
+**Generated files:**
+
+* `app/mailboxes/support_mailbox.rb`
+* `test/mailboxes/support_mailbox_test.rb`
+
+---
+
+## 6. Support Mailbox Logic
+
+```ruby
+class SupportMailbox < ApplicationMailbox
+  def process
+    # mail.decode  -> email body
+    # mail.from    -> sender
+    # mail.subject -> subject
+  end
+end
+```
+
+`process` method handles incoming email data.
+
+---
+
+## 7. View Incoming Emails (Development)
+
+```bash
+rails s
+```
+Open:
+
+```
+http://127.0.0.1:3000/rails/conductor/action_mailbox/inbound_emails
+```
+
+will get:
+* View inbound emails
+* Create emails using form or source
+* Check message ID and status
+---
+<h1>Day-17</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">  
+</head>
+<body>
+
+<div class="container">
+
+  <h1>ActiveRecord Methods</h1>
+  <p>
+    The following are <strong>inbuilt ActiveRecord query methods</strong>
+    that are widely used in real-time Ruby on Rails applications.
+  </p>
+
+  <hr>
+
+  <h2>1. New | Create</h2>
+
+  <h3>🔹 new</h3>
+  <p>
+    The <code>new</code> method creates an object of the model but does
+    <strong>not save</strong> it to the database until <code>save</code> is called.
+  </p>
+
+  <pre><code>
+c = Customer.new(
+  name: "Demo",
+  email: "demo@gmail.com",
+  mob: 123458765,
+  dob: "11-04-2024"
+)
+  </code></pre>
+
+  <pre><code>
+# id is nil → record not saved
+<Customer id: nil, name: "Demo", created_at: nil>
+  </code></pre>
+
+  <h4>Saving explicitly</h4>
+
+  <pre><code>
+c.save
+  </code></pre>
+
+  <pre><code>
+# Record is now saved
+<Customer id: 21, name: "Demo", created_at: "2026-02-03">
+  </code></pre>
+
+  <div class="note">
+    <strong>Key Point:</strong> <code>new</code> does not hit the database until <code>save</code> is executed.
+  </div>
+
+  <hr>
+
+  <h3>🔹 create</h3>
+  <p>
+    The <code>create</code> method creates and saves the record in a single step.
+    No need to call <code>save</code> explicitly.
+  </p>
+
+  <pre><code>
+c = Customer.create(
+  name: "Demo1",
+  email: "demo1@gmail.com",
+  mob: 123458765,
+  dob: "11-04-2024"
+)
+  </code></pre>
+
+  <pre><code>
+<Customer id: 22, name: "Demo1">
+  </code></pre>
+
+  <div class="note">
+    <strong>Key Point:</strong> <code>create</code> automatically persists the record.
+  </div>
+
+  <hr>
+
+  <h2>2. Delete | Destroy</h2>
+
+  <h3>🔹 delete</h3>
+  <p>
+    The <code>delete</code> method removes the record directly from the database.
+    It <strong>does not run callbacks</strong>.
+  </p>
+
+  <pre><code>
+Customer.delete(21)
+  </code></pre>
+
+  <pre><code>
+DELETE FROM "customers" WHERE "id" = 21
+  </code></pre>
+
+  <hr>
+
+  <h3>🔹 destroy</h3>
+  <p>
+    The <code>destroy</code> method deletes the record and also
+    removes all <strong>associated / referenced records</strong>.
+    Callbacks are executed.
+  </p>
+
+  <pre><code>
+Customer.destroy(22)
+  </code></pre>
+
+  <pre><code>
+# Deletes customer and related records (attachments, rich text, etc.)
+  </code></pre>
+
+  <div class="note">
+    <strong>Difference:</strong>
+    <ul>
+      <li><code>delete</code> → Fast, no callbacks</li>
+      <li><code>destroy</code> → Safe, runs callbacks & associations</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h2>3. Insert One Data | Insert Multiple Data</h2>
+
+  <h3>🔹 Insert One Record</h3>
+
+  <pre><code>
+Customer.create(
+  name: "Demo1",
+  email: "demo1@gmail.com",
+  mob: 123458765,
+  dob: "11-04-2024"
+)
+  </code></pre>
+
+  <h3>🔹 Insert Multiple Records</h3>
+
+  <pre><code>
+Customer.create(
+  { name: "Demo1", email: "demo1@gmail.com", mob: 123458765, dob: "11-04-2024" },
+  { name: "Demo",  email: "demo@gmail.com",  mob: 123458765, dob: "11-04-2024" }
+)
+  </code></pre>
+
+  <hr>
+
+  <h2>4. find | find_by</h2>
+
+  <h3>🔹 find</h3>
+  <p>
+    The <code>find</code> method fetches the record by ID.
+    If the record does not exist, it throws an error.
+  </p>
+
+  <pre><code>
+@customers = Customer.find(111)
+  </code></pre>
+
+  <pre><code>
+ActiveRecord::RecordNotFound
+Couldn't find Customer with 'id'=111
+  </code></pre>
+
+  <hr>
+
+  <h3>🔹 find_by</h3>
+  <p>
+    The <code>find_by</code> method returns <code>nil</code> if the record is not found.
+    It does not throw an exception.
+  </p>
+
+  <pre><code>
+@customers = Customer.find_by(id: 111)
+  </code></pre>
+
+  <pre><code>
+# returns nil
+# accessing attributes causes NoMethodError
+  </code></pre>
+
+  <div class="note">
+    <strong>Tip:</strong> Use <code>find_by</code> when you want to avoid exceptions.
+  </div>
+
+  <hr>
+
+  <h2>5. where</h2>
+  <p>
+    The <code>where</code> method fetches an array of records
+    that match the given condition.
+  </p>
+
+  <ul>
+    <li>If records exist → returns array of objects</li>
+    <li>If no records → returns empty array</li>
+    <li>Does not throw error</li>
+  </ul>
+
+  <pre><code>
+Customer.where(name: "Demo")
+  </code></pre>
+
+  <pre><code>
+# []
+# or [#<Customer ...>]
+  </code></pre>
+
+  <div class="note">
+    <strong>Key Point:</strong> <code>where</code> always returns a collection.
+  </div>
+
+</div>
+
+</body>
+</html>
+
+
 
 
 
