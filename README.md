@@ -1879,6 +1879,66 @@ Customer.where(name: "Demo")
 </body>
 </html>
 
+<hr>
+
+<h1>Day-18</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ 
+</head>
+<body>
+
+  <h2>Scopes :</h2>
+  <ul>
+    <li>It is one of the ways used to create a connection between models.</li>
+    <li>As we know, by using the command:
+      <code>rails g migration Product::Category</code>
+    </li>
+    <li>Here, the Category table and Product table are connected to each other.  
+        If we need to access the category, it can be done by using the Product scope.
+    </li>
+    <li>If the foreign key is not present in the Category table, we need to add a column
+        <code>cat_id</code> to the Product table.
+    </li>
+  </ul>
+
+  <h2>Different ways of connecting the tables</h2>
+
+  <h3>1. Joins :</h3>
+  <ul>
+    <li>This is used to join tables, but it can lead to the N+1 query problem.</li>
+    <li>It leads to lazy loading.</li>
+  </ul>
+
+  <h3>2. Include :</h3>
+  <ul>
+    <li>Includes are used to connect tables and solve the N+1 query problem.</li>
+    <li>It provides 1 + 1 query execution.</li>
+    <li>It leads to eager loading.</li>
+  </ul>
+
+  <h3>3. Scope :</h3>
+  <ul>
+    <li>Scopes are used to create a model inside another model, which creates dependency.</li>
+    <li>They are used in scenarios to improve performance.</li>
+  </ul>
+
+  <h3>4. Association :</h3>
+  <ul>
+    <li>Associations are used to connect tables based on availability.</li>
+    <li>There are four different types of associations.</li>
+    <li>We can directly call ActiveRecord methods after connecting one table with another using chaining.</li>
+  </ul>
+
+  <h2>Active Support and its methods :</h2>
+  <p>Day18 Readme.md</p>
+
+</body>
+</html>
+
+
 
 
 
