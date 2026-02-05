@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editing Customer</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .edit-container {
+      width: 420px;
+      margin: 60px auto;
+      padding: 25px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .edit-container h1 {
+      text-align: center;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 9px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .btn-save {
+      margin-top: 20px;
+      width: 100%;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .links {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: #0b5ed7;
+      margin: 0 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="edit-container">
+    <h1>Editing Customer</h1>
+
+    <%= form_with model: @customer do |form| %>
+
+      <label>Name</label>
+      <%= form.text_field :name %>
+
+      <label>Email</label>
+      <%= form.email_field :email %>
+
+      <label>AboutMe:</label>
+    <%= form.rich_text_area :about_me %>
+ 
+
+      <%= form.submit "Save Customer", class: "btn-save" %>
+
+    <% end %>
+
+    <div class="links">
+      <%= link_to "Show this customer", @customer %> |
+      <%= link_to "Back to customers", customers_path %>
+    </div>
+  </div>
+
+</body>
+</html>

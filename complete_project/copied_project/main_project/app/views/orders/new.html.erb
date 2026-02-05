@@ -1,0 +1,17 @@
+<h2>New Order</h2>
+
+<%= form_with model: @order do |f| %>
+  <div>
+    <%= f.label :details %><br>
+    <%= f.text_field :details %>
+  </div>
+
+  <div>
+    <%= f.label :count %><br>
+    <%= f.number_field :count %>
+  </div>
+
+  <div>
+    <%= f.submit "Create Order" %>
+  </div>
+<% end %>

@@ -1,0 +1,76 @@
+<h1>Customers</h1>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>View</th>
+      <th>About Me </th>
+      <th>Data </th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+  
+  
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.about_me %></td>
+        <td><% if customer.profile_photo.attached? %> 
+          <% if customer.profile_photo.image? %>
+          <%= image_tag  url_for(customer.profile_photo) %>
+          <% end %>
+          
+        <% else %>
+        <p> No photo </p>
+        <% end %>
+          
+          </td>
+
+        <td>
+          <%= link_to "Show this customer", customer, class: "btn" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Customer", new_customer_path,class: "btn btn-info"%>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+  }
+
+  th {
+    background-color: #e3e3e3;
+  }
+
+  .btn {
+    background-color: #0d6efd;
+    color: white;
+    padding: 6px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .new-btn {
+    background-color: green;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+</style>
+

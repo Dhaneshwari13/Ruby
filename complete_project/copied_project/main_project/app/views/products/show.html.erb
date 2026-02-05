@@ -1,0 +1,137 @@
+<div class="product-show-card">
+  <h2><%= @product.name %></h2>
+
+  <p><strong>Description:</strong> <%= @product.description %></p>
+  <p><strong>Price:</strong> ₹<%= @product.price %></p>
+  <p><strong>Stock:</strong> <%= @product.stock %></p>
+  <p><strong>Status:</strong> 
+    <span class="<%= @product.is_active ? 'active' : 'inactive' %>">
+      <%= @product.is_active ? 'Active' : 'Inactive' %>
+    </span>
+  </p>
+
+  <div class="product-details-box">
+  <p><strong>Details:</strong></p>
+  <div class="product-details-content">
+    <%= @product.details.present? ? @product.details : "-" %>
+  </div>
+
+  <div class="product-photo-box">
+        <div class="product-photo">profile photo</div>
+        <div class="product-photo-content">
+
+         <% if @product.product_photo.attached? %>
+         <% @product.product_photo.each do |photo| %>
+          <%= image_tag  photo,alt:"product photo" ,size:"100x100"%>
+
+         <% end %>
+
+         <% if @product.invoice.attached? %>
+          <%= link_to "View PDF", rails_blob_path(@product.invoice, disposition:"inline")%>
+        <% else %>
+            <p>No invoice file</p>
+        <% end %>
+
+      
+  
+<% end %>
+       
+      </div>
+
+</div>
+
+
+
+  <div class="buttons">
+    <%= link_to "Edit this product", edit_product_path(@product), class: "btn edit-btn" %>
+    <%= link_to "Back to products", products_path, class: "btn back-btn" %>
+    <%= link_to "Destroy this product", @product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn delete-btn" %>
+  </div>
+</div>
+
+<style>
+  .product-show-card {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    background-color: #fefefe;
+  }
+
+  .product-show-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .product-show-card p {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+
+  .active {
+    color: white;
+    background-color: green;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .inactive {
+    color: white;
+    background-color: red;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+  }
+
+  .btn {
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    width: 32%;
+  }
+
+  .product-details-box {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-left: 5px solid #0275d8;
+  border-radius: 6px;
+}
+
+.product-details-content {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.product-details-content ul,
+.product-details-content ol {
+  padding-left: 20px;
+}
+
+.product-details-content blockquote {
+  margin: 10px 0;
+  padding-left: 12px;
+  border-left: 4px solid #adb5bd;
+  color: #555;
+}
+
+
+  .edit-btn { background-color: #f0ad4e; }  /* yellow */
+  .back-btn { background-color: #0275d8; }  /* blue */
+  .delete-btn { background-color: #d9534f; } /* red */
+</style>

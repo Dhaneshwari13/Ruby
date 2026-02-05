@@ -1,0 +1,86 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+/* Products Table Container */
+#products {
+  margin-top: 20px;
+}
+
+/* Table Styling */
+#products table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Table Header */
+#products thead th {
+  background-color: #212529; /* dark header */
+  color: #ffffff;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/* Table Body Cells */
+#products tbody td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+  font-size: 14px;
+}
+
+/* Zebra Stripe */
+#products tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Hover Effect */
+#products tbody tr:hover {
+  background-color: #e9ecef;
+  transition: 0.3s;
+}
+
+/* Active / Inactive Status */
+.status-active {
+  color: #198754; /* Bootstrap green */
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: #dc3545; /* Bootstrap red */
+  font-weight: bold;
+}
+
+/* Action Buttons */
+#products .btn {
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+/* New Product Button */
+.btn-info {
+  margin-top: 15px;
+}
+
+
+.btn_new_product{
+
+ 
+    text-decoration: none;
+      
+
+}
+
