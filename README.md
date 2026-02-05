@@ -1938,6 +1938,139 @@ Customer.where(name: "Demo")
 </body>
 </html>
 
+<hr>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ 
+</head>
+<body>
+
+  <h1>Day 19 – References and Associations</h1>
+
+  <div class="box">
+    <h2>Associations in Rails</h2>
+    <p>
+      Associations define how models (tables) are related in a Rails application.
+      They help ActiveRecord fetch related data easily without writing SQL.
+    </p>
+  </div>
+
+  <div class="box">
+    <h2>Relationship Types</h2>
+    <ul>
+      <li><strong>One-to-One:</strong> User → Profile</li>
+      <li><strong>One-to-Many:</strong> User → Orders</li>
+      <li><strong>Many-to-One:</strong> Orders → User (<code>belongs_to</code>)</li>
+      <li><strong>Many-to-Many:</strong> Students ↔ Courses</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>Rails Association Macros</h2>
+    <ul>
+      <li>has_one</li>
+      <li>has_many</li>
+      <li>belongs_to</li>
+      <li>has_one :through</li>
+      <li>has_many :through</li>
+      <li>polymorphic</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>Polymorphic Association</h2>
+    <p>
+      A polymorphic association allows one model to belong to multiple models,
+      where a single table acts as a child for different parent tables.
+    </p>
+  </div>
+
+  <div class="box">
+    <h2>Generate Model with Reference</h2>
+    <pre>
+rails generate model Vendor name:string location:string user:references
+    </pre>
+  </div>
+
+  <div class="box">
+    <h3>Auto-generated Migration</h3>
+    <pre>
+create_table :vendors do |t|
+  t.string :name
+  t.string :location
+  t.references :user, null: false, foreign_key: true
+  t.timestamps
+end
+    </pre>
+  </div>
+
+  <div class="box">
+    <h2>Run Migration</h2>
+    <pre>
+rails db:migrate
+    </pre>
+    <p><strong>Effect:</strong></p>
+    <ul>
+      <li>Creates vendors table</li>
+      <li>Adds user_id foreign key</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>Generate Model (Without Reference)</h2>
+    <pre>
+rails generate model Order details:string count:integer
+    </pre>
+  </div>
+
+  <div class="box">
+    <h2>Add Reference to Existing Model</h2>
+    <pre>
+rails generate migration AddUserToOrders user:references
+    </pre>
+  </div>
+
+  <div class="box">
+    <h2>Add Column to Existing Table</h2>
+    <pre>
+rails generate migration AddEmailToVendors email:string
+    </pre>
+  </div>
+
+  <div class="box">
+    <h2>Create Records from Console</h2>
+    <pre>
+User.create(name: "Dhanu")
+Vendor.create(name: "Radha", location: "Varanasi", user_id: 1)
+Order.create(details: "Krishna", count: 2, user_id: 1)
+    </pre>
+  </div>
+
+  <div class="box">
+    <h2>Association-Based Creation</h2>
+    <pre>
+User.last.vendors.create(name: "Dhanu", location: "Glb")
+Product.last.orders.create(details: "Wanted Books", count: 5)
+    </pre>
+  </div>
+
+  <div class="box">
+    <h2>Quick Summary</h2>
+    <ul>
+      <li><code>rails generate model</code> → model + migration + tests</li>
+      <li><code>rails generate migration</code> → only migration</li>
+      <li><code>user:references</code> → creates user_id + foreign key</li>
+      <li><code>rails db:migrate</code> → applies changes to DB</li>
+    </ul>
+  </div>
+
+</body>
+</html>
+
+
 
 
 
