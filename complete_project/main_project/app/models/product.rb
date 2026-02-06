@@ -5,7 +5,11 @@ has_many_attached:product_photo
 has_one_attached:invoice
 
 has_rich_text :details
-has_many :orders
+has_many :orders,dependent: :destroy
+
+has_and_belongs_to_many :tags
+has_many :offers, through: :product_offers
+ 
 
 # validates :name, format: { with: /\A[a-zA-Z]+\z/, message: "Only letters are allowed" }
 # validates :stock, numericality: true
